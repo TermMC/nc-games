@@ -9,17 +9,21 @@ export const getCategories = () => {
 };
 
 export const getAllReviews = (queries) => {
-  if (Object.entries(queries).length !== 0) {
-    const queryArr = [];
-    for (let query in queries) {
-      queryArr.push(`${query}=${queries[query]}`);
-    }
-    return api
-      .get(`/reviews?${queryArr.join("&")}`)
-      .then((res) => res.data.reviews);
-  } else {
-    return api.get("/reviews").then((res) => res.data.reviews);
-  }
+  return api
+    .get("/reviews", { params: queries })
+    .then((res) => res.data.reviews);
+  //OLD LOGIC - THINK PARAMS HANDLES THIS BUT KEEPING JUST FOR NOW INCASE THERE IS SOME FUNCTIONALITY I HAVEN'T SEEN
+  // if (Object.entries(queries).length !== 0) {
+  //   const queryArr = [];
+  //   for (let query in queries) {
+  //     queryArr.push(`${query}=${queries[query]}`);
+  //   }
+  //   return api
+  //     .get(`/reviews?${queryArr.join("&")}`)
+  //     .then((res) => res.data.reviews);
+  // } else {
+  //   return api.get("/reviews").then((res) => res.data.reviews);
+  // }
 };
 export const getOneReview = (review_id) => {
   return api.get(`/reviews/${review_id}`).then((res) => res.data.review);

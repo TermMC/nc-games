@@ -6,6 +6,7 @@ import CommentCard from "./CommentCard";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { Grid } from "@mui/material";
 
 const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
@@ -19,11 +20,9 @@ const Comments = ({ review_id }) => {
 
   useEffect(() => {
     getCommentsOnReview(review_id).then((comments) => setComments(comments));
-  }, [newCommentPosted]);
+  }, [newCommentPosted, review_id]);
 
   const handleCommentSubmit = (e) => {
-    //need behaviour here about if body not complete
-    //perhaps prevent post comment
     e.preventDefault();
     console.log(newComment);
     postComment(review_id, newComment)
@@ -34,8 +33,9 @@ const Comments = ({ review_id }) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         setError(err);
+        //what to do with this, console log :/ probably could be some more useful thing
+        console.log(error);
       });
   };
   const handleChange = (e) => {
@@ -45,7 +45,6 @@ const Comments = ({ review_id }) => {
   };
   return (
     <div>
-      The Comments Will Be Here
       <Box
         component="form"
         sx={{
@@ -63,12 +62,16 @@ const Comments = ({ review_id }) => {
           name="body"
           value={newComment.body}
           onChange={handleChange}
+          required
         />
-        <Button variant="text" type="submit">
+        <Button
+          variant="text"
+          type="submit" /*why doesn't this work{error ? "disabled" : ""}*/
+        >
           Submit
         </Button>
       </Box>
-      <ul>
+      <Grid container spacing={2}>
         {comments.map((comment) => {
           return (
             <CommentCard
@@ -78,7 +81,7 @@ const Comments = ({ review_id }) => {
             />
           );
         })}
-      </ul>
+      </Grid>
     </div>
   );
 };

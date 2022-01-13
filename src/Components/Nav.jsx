@@ -1,34 +1,44 @@
+import { AppBar, Box, IconButton, Toolbar, Typography } from "@mui/material";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { UserContext } from "../Contexts/UserContext";
-
-const NavBar = styled.ul`
-  background-color: rgba(200, 50, 0, 0.3);
-  border: 1px black solid;
-  margin: 20px;
-`;
+import HomeIcon from "@mui/icons-material/Home";
 
 const Nav = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <NavBar>
-      Nav Bar
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      <li>
-        <Link to="/reviews/create">Post Review</Link>
-      </li>
-      <li>
-        {user.username ? (
-          <Link to={`/users/${user.username}`}> {`${user.username}`} </Link>
-        ) : (
-          <Link to="/login">Log In</Link>
-        )}
-      </li>
-    </NavBar>
+    <Box sx={{ flexGrow: 1 }} container spacing={2}>
+      <AppBar>
+        <Toolbar>
+          <Link to="/">
+            <IconButton size="large" edge="start" sx={{ mr: 2 }}>
+              <HomeIcon />
+            </IconButton>
+          </Link>
+          <Link to="/reviews/create">
+            <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+              Post Review{" "}
+            </Typography>
+          </Link>
+          {user.username ? (
+            <Link to={`/users/${user.username}`}>
+              <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                {" "}
+                {`${user.username}`}{" "}
+              </Typography>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                Log In
+              </Typography>
+            </Link>
+          )}
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+    </Box>
   );
 };
 

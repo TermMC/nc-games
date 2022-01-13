@@ -18,13 +18,16 @@ export const useVote = (currVotes = 0, endpoint, id) => {
       setVotes((prevVotes) => {
         return Number(prevVotes) - 1;
       });
-      patchVotes(-1, endpoint, id).catch((err) => {
-        console.log("err in -1", err);
-        setVotes((prevVotes) => {
-          return Number(prevVotes) + 1;
+      patchVotes(-1, endpoint, id)
+        // .then(()=>{
+        //   setUser(prevUser=>{ return {prevUser..., votedReviews:"hong"}})})
+        .catch((err) => {
+          console.log("err in -1", err);
+          setVotes((prevVotes) => {
+            return Number(prevVotes) + 1;
+          });
+          setError({ err });
         });
-        setError({ err });
-      });
     } else {
       setVotes((prevVotes) => {
         return Number(prevVotes) + 1;

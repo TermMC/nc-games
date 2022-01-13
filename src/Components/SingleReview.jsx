@@ -1,3 +1,5 @@
+import { Grid, Paper, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
@@ -10,18 +12,36 @@ const SingleReview = () => {
   const [review, setReview] = useState({});
   useEffect(() => {
     getOneReview(review_id).then((review) => setReview(review));
-  }, []);
+  }, [review_id]);
   const { voteButton } = useVote(review.votes, "review", review_id);
 
   return (
-    <div>
-      Naught but a single review, m'lord
-      {Object.entries(review).map((entry) => {
-        return <p key={`${entry[0]}`}>{`${entry[0]} is ${entry[1]}`}</p>;
-      })}
-      {voteButton}
-      <Comments review_id={review_id} />
-    </div>
+    // designer, review_img_url, category, owner, created_at, comment_count
+
+    <Box>
+      <Grid>
+        <Grid item>
+          <Typography variant="h4">{review.title}</Typography>
+        </Grid>
+
+        <Grid item>{<img src={review.review_img_url} width="100vw" />}</Grid>
+
+        <Grid item>
+          <Typography variant="h6">
+            {`Author : ${review.owner} --- Game Designer :${review.designer}`}{" "}
+          </Typography>{" "}
+        </Grid>
+
+        <Grid item>
+          <Typography variant="body1"> {review.review_body} </Typography>
+        </Grid>
+        <Grid item>{voteButton}</Grid>
+        <Grid>
+          <Comments review_id={review_id} />
+        </Grid>
+      </Grid>
+      <Paper elevation={3} />
+    </Box>
   );
 };
 
