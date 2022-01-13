@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Reviews from "./Components/Reviews";
+import Nav from "./Components/Nav";
+import SingleReview from "./Components/SingleReview";
+import CreateReview from "./Components/CreateReview";
+import SingleUser from "./Components/SingleUser";
+import Error from "./Components/Error";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+//make error pages for if review/userdata fails to load
+//make it direct to said error pages
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Reviews />} />
+          <Route path="/reviews/:review_id" element={<SingleReview />} />
+          <Route path="/reviews/create" element={<CreateReview />} />
+          <Route path="/users/:username" element={<SingleUser />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
