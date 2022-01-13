@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Chip, Divider, Grid, Paper, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -28,14 +28,21 @@ const SingleReview = () => {
 
         <Grid item>
           <Typography variant="h6">
-            {`Author : ${review.owner} --- Game Designer :${review.designer}`}{" "}
+            {`Author : ${review.owner} --- Game Designer : ${review.designer}`}{" "}
           </Typography>{" "}
         </Grid>
+        <Divider></Divider>
 
         <Grid item>
           <Typography variant="body1"> {review.review_body} </Typography>
         </Grid>
         <Grid item>{voteButton}</Grid>
+        <Divider></Divider>
+        <Divider>
+          <Chip label="Comments" />
+        </Divider>
+        <Divider></Divider>
+
         <Grid>
           <Comments review_id={review_id} />
         </Grid>

@@ -9,7 +9,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { Grid } from "@mui/material";
 
-const SearchBar = ({ queries, setQueries }) => {
+const SearchBar = ({ setQueries }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     getCategories().then((categories) => setCategories(categories));
@@ -27,14 +27,12 @@ const SearchBar = ({ queries, setQueries }) => {
     setQueries((prevQueries) => {
       return { ...prevQueries, [e.target.name]: e.target.value };
     });
-    console.log(queries);
   };
 
   const handleToggleButton = (e, order) => {
     setQueries((prevQueries) => {
       return { ...prevQueries, order: order };
     });
-    console.log(queries);
   };
 
   return (

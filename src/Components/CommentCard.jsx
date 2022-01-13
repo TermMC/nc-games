@@ -11,10 +11,18 @@ const CommentCard = ({ comment, setNewCommentPosted }) => {
   const { user } = useContext(UserContext);
   const [error, setError] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
-  // const dayjs = require("dayjs");
+
+  const dayjs = require("dayjs");
+  const date = dayjs(comment.created_at);
+  const usableDate = `${String(date.$H).padStart(2, "0")}:${String(
+    date.$m
+  ).padStart(2, "0")} ${String(date.$D).padStart(2, "0")}/${String(
+    date.$M + 1
+  ).padStart(2, "0")}/${date.$y}`;
   useEffect(() => {
     getUser(comment.author).then((author) => {
       setAvatarUrl(author.avatar_url);
+      console.log(date);
     });
   }, [comment]);
 
@@ -44,7 +52,7 @@ const CommentCard = ({ comment, setNewCommentPosted }) => {
             </Grid>
             <Grid item xs={5}>
               <Typography variant="body2">
-                {comment.author} Created at: {comment.created_at}
+                {comment.author} Created at: {usableDate}
               </Typography>
             </Grid>
             <Grid item xs={1}>
