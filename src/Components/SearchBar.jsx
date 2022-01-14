@@ -80,7 +80,8 @@ const SearchBar = ({ setQueries }) => {
                 <MenuItem value="created_at"> Created On</MenuItem>
                 <MenuItem value="designer"> Game Designer</MenuItem>
                 <MenuItem value="title"> Review Title</MenuItem>
-                <MenuItem value="comment_count"> Votes</MenuItem>
+                <MenuItem value="votes"> Votes</MenuItem>
+                <MenuItem value="comment_count"> Comments</MenuItem>
               </Select>
             </FormControl>
           </Box>

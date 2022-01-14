@@ -7,10 +7,15 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
+import ArrowDropDownCircleIcon from "@mui/icons-material/ArrowDropDownCircle";
+import { Fab } from "@mui/material";
 
 const Comments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [error, setError] = useState(null);
+  const [commentQueries, setCommentsQueries] = useState({ num_limit: 2 });
+  const [isMoreComments, setIsMoreComments] = useState(true);
+
   const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState({
     username: user.username,
@@ -19,10 +24,13 @@ const Comments = ({ review_id }) => {
   const [newCommentPosted, setNewCommentPosted] = useState(0);
 
   useEffect(() => {
-    getCommentsOnReview(review_id).then((comments) => setComments(comments));
-  }, [newCommentPosted, review_id]);
+    getCommentsOnReview(review_id, commentQueries).then((comments) =>
+      setComments(comments)
+    );
+  }, [newCommentPosted, review_id, commentQueries]);
 
   const handleCommentSubmit = (e) => {
+    //add logic here to make sure the comment isn't blank, probably regex it and make it display appropriate things if they try to submit comment
     e.preventDefault();
     console.log(newComment);
     postComment(review_id, newComment)
@@ -42,6 +50,15 @@ const Comments = ({ review_id }) => {
     setNewComment((prevComment) => {
       return { ...prevComment, body: e.target.value };
     });
+  };
+  const handleMoreComments = () => {
+    setCommentsQueries((prevQueries) => {
+      console.log(prevQueries.num_limit);
+      return { ...prevQueries, num_limit: Number(prevQueries.num_limit) + 3 };
+    });
+    if (comments.length < commentQueries.num_limit) {
+      setIsMoreComments(false);
+    }
   };
   return (
     <div>
@@ -82,6 +99,14 @@ const Comments = ({ review_id }) => {
           );
         })}
       </Grid>
+      {isMoreComments ? (
+        <Fab variant="extended" onClick={handleMoreComments}>
+          <ArrowDropDownCircleIcon sx={{ mr: 1 }} />
+          See More Comments
+        </Fab>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

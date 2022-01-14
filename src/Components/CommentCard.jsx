@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../Contexts/UserContext";
-import { useVote } from "../Hooks/useVotes";
+
 import Button from "@mui/material/Button";
 import { deleteComment, getUser } from "../utils";
 import { Avatar, Card, CardContent, Grid, Typography } from "@mui/material";
 import { useEffect } from "react/cjs/react.development";
+import VotesButton from "./VotesButton";
 
 const CommentCard = ({ comment, setNewCommentPosted }) => {
   //line 11 not needed
-  const { voteButton } = useVote(comment.votes, "comment", comment.comment_id);
+  // const { voteButton } = useVote(comment.votes, "comment", comment.comment_id);
   const { user } = useContext(UserContext);
   const [error, setError] = useState(null);
   const [avatarUrl, setAvatarUrl] = useState("");
@@ -56,7 +57,11 @@ const CommentCard = ({ comment, setNewCommentPosted }) => {
             </Grid>
             <Grid item xs={1}>
               {/* this would have to be <VoteButton votes={comment.votes} endpoint={"comment"} id={comment.comment_id} */}
-              {voteButton}
+              <VotesButton
+                currVotes={comment.votes}
+                endpoint={"comment"}
+                id={comment.comment_id}
+              />
             </Grid>
             {/* CURRENTLY THIS ERROR THINGY ISN'T REALLY DOING OWT */}
 

@@ -26,7 +26,10 @@ const ReviewCard = ({ review }) => {
             Designer: {review.designer}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Category {review.category} Votes: {review.comment_count}
+            Category {review.category}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Votes {review.votes} Comments: {review.comment_count}
           </Typography>
         </CardContent>
       </Card>

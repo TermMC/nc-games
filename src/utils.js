@@ -25,14 +25,15 @@ export const getAllReviews = (queries) => {
   //   return api.get("/reviews").then((res) => res.data.reviews);
   // }
 };
-export const getOneReview = (review_id) => {
-  return api.get(`/reviews/${review_id}`).then((res) => res.data.review);
+
+export const getCommentsOnReview = (review_id, queries) => {
+  return api
+    .get(`/reviews/${review_id}/comments`, { params: queries })
+    .then((res) => res.data.comments);
 };
 
-export const getCommentsOnReview = (review_id) => {
-  return api
-    .get(`/reviews/${review_id}/comments`)
-    .then((res) => res.data.comments);
+export const getOneReview = (review_id) => {
+  return api.get(`/reviews/${review_id}`).then((res) => res.data.review);
 };
 
 export const patchVotes = (inc, endpoint, id) => {

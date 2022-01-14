@@ -1,3 +1,4 @@
+import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
@@ -12,11 +13,10 @@ const SingleUser = () => {
     getUser(username).then((userData) => {
       setUserData(userData);
       setIsLoading(false);
-      console.log("userData", userData);
     });
   }, [username]);
   return isLoading ? (
-    <p>It's loading ya'll</p>
+    <CircularProgress />
   ) : (
     <>
       <p>{userData.name}</p>
