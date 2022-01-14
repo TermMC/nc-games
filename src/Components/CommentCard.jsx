@@ -7,6 +7,7 @@ import { Avatar, Card, CardContent, Grid, Typography } from "@mui/material";
 import { useEffect } from "react/cjs/react.development";
 
 const CommentCard = ({ comment, setNewCommentPosted }) => {
+  //line 11 not needed
   const { voteButton } = useVote(comment.votes, "comment", comment.comment_id);
   const { user } = useContext(UserContext);
   const [error, setError] = useState(null);
@@ -22,12 +23,10 @@ const CommentCard = ({ comment, setNewCommentPosted }) => {
   useEffect(() => {
     getUser(comment.author).then((author) => {
       setAvatarUrl(author.avatar_url);
-      console.log(date);
     });
   }, [comment]);
 
   const handleCommentDelete = () => {
-    console.log(comment.comment_id);
     deleteComment(comment.comment_id)
       .then((res) => {
         setNewCommentPosted((prevValue) => prevValue - 1);
@@ -56,6 +55,7 @@ const CommentCard = ({ comment, setNewCommentPosted }) => {
               </Typography>
             </Grid>
             <Grid item xs={1}>
+              {/* this would have to be <VoteButton votes={comment.votes} endpoint={"comment"} id={comment.comment_id} */}
               {voteButton}
             </Grid>
             {/* CURRENTLY THIS ERROR THINGY ISN'T REALLY DOING OWT */}
