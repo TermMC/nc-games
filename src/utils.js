@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://nc-bg-reviews.herokuapp.com/api/",
+  baseURL: "https://nc-bg-reviews.herokuapp.com/api/",
 });
 
 export const getCategories = () => {
