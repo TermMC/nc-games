@@ -1,10 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Contexts/UserContext";
 
 import Button from "@mui/material/Button";
 import { deleteComment, getUser } from "../utils";
 import { Avatar, Card, CardContent, Grid, Typography } from "@mui/material";
-import { useEffect } from "react/cjs/react.development";
 import VotesButton from "./VotesButton";
 
 const CommentCard = ({ comment, setNewCommentPosted }) => {

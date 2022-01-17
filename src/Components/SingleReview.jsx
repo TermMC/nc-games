@@ -7,9 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 
 import { getOneReview } from "../utils";
 import Comments from "./Comments";

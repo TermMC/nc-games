@@ -1,7 +1,6 @@
 import { CircularProgress } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 import { getUser } from "../utils";
 
 const SingleUser = () => {

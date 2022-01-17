@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../Contexts/UserContext";
 import { getCommentsOnReview, postComment } from "../utils";
 import CommentCard from "./CommentCard";
