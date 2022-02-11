@@ -34,7 +34,6 @@ const VotesButton = ({ currVotes, endpoint, id }) => {
           localStorage.setItem(`${endpoint}Votes`, checkerArr.join(","));
         })
         .catch((err) => {
-          console.log("err in -1", err);
           setVotes((prevVotes) => {
             return Number(prevVotes) + 1;
           });
@@ -47,7 +46,7 @@ const VotesButton = ({ currVotes, endpoint, id }) => {
       patchVotes(1, endpoint, id)
         .then(() => {
           let oldVal = localStorage.getItem(`${endpoint}Votes`);
-          console.log(oldVal);
+
           oldVal
             ? localStorage.setItem(`${endpoint}Votes`, `${oldVal},${id}`)
             : localStorage.setItem(`${endpoint}Votes`, `${id}`);
@@ -56,7 +55,6 @@ const VotesButton = ({ currVotes, endpoint, id }) => {
           setVotes((prevVotes) => {
             return Number(prevVotes) - 1;
           });
-          console.log("err in 1", err);
           setError({ err });
         });
     }

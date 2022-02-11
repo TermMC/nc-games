@@ -29,9 +29,8 @@ const Comments = ({ review_id }) => {
   }, [newCommentPosted, review_id, commentQueries]);
 
   const handleCommentSubmit = (e) => {
-    //add logic here to make sure the comment isn't blank, probably regex it and make it display appropriate things if they try to submit comment
+    //add  regex it
     e.preventDefault();
-    console.log(newComment);
     postComment(review_id, newComment)
       .then(() => {
         setNewCommentPosted((currValue) => currValue + 1);
@@ -41,8 +40,6 @@ const Comments = ({ review_id }) => {
       })
       .catch((err) => {
         setError(err);
-        //what to do with this, console log :/ probably could be some more useful thing
-        console.log(error);
       });
   };
   const handleChange = (e) => {
@@ -52,7 +49,6 @@ const Comments = ({ review_id }) => {
   };
   const handleMoreComments = () => {
     setCommentsQueries((prevQueries) => {
-      console.log(prevQueries.num_limit);
       return { ...prevQueries, num_limit: Number(prevQueries.num_limit) + 3 };
     });
     if (comments.length < commentQueries.num_limit) {

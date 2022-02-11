@@ -32,7 +32,6 @@ const CommentCard = ({ comment, setNewCommentPosted }) => {
         setNewCommentPosted((prevValue) => prevValue - 1);
       })
       .catch((err) => {
-        console.log(err);
         setError("error", err);
       });
   };
