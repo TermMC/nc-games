@@ -56,7 +56,7 @@ const SingleReview = () => {
             </Grid>
 
             <Grid item>
-              {<img src={review.review_img_url} width="100vw" />}
+              {<img alt={""} src={review.review_img_url} width="100vw" />}
             </Grid>
 
             <Grid item>

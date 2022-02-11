@@ -29,7 +29,7 @@ const Comments = ({ review_id }) => {
   }, [newCommentPosted, review_id, commentQueries]);
 
   const handleCommentSubmit = (e) => {
-    //add  regex it
+    //add regex
     e.preventDefault();
     postComment(review_id, newComment)
       .then(() => {

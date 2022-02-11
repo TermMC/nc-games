@@ -26,13 +26,13 @@ const Nav = () => {
                 </IconButton>
               </Link>
             </Grid>
-            <Grid item>
+            {/* <Grid item>
               <Link to="/reviews/create">
                 <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                   Post Review{" "}
                 </Typography>
               </Link>
-            </Grid>
+            </Grid> */}
             <Grid item>
               {user.username ? (
                 <Link to={`/users/${user.username}`}>
