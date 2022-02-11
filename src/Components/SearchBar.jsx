@@ -39,7 +39,7 @@ const SearchBar = ({ setQueries }) => {
     <form>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12}>
-          Search Bar
+          {/* Search Bar */}
         </Grid>
         <Grid item xs={12} justifyContent="center">
           <Box sx={{ minWidth: 120, maxWidth: 300 }}>
